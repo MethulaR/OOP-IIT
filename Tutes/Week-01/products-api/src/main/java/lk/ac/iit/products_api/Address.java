@@ -1,4 +1,4 @@
-package lk.ac.iit.products_api;
+package lk.ac.iit.products_api.Address;
 
 public class Address {
 
@@ -6,7 +6,7 @@ public class Address {
     private String city;
     private String postcode;
 
-    public Address(){}
+    public Address() {}
 
     public Address(String street, String city, String postcode) {
         this.street = street;
@@ -15,7 +15,8 @@ public class Address {
     }
 
     public String getStreet() {return street;}
-    public void setStreet(String street) {this.street = street;}
+
     public String getCity() {return city;}
 
+    public String getPostcode() {return postcode;}
 }

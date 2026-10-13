@@ -1,22 +1,20 @@
-package lk.ac.iit.products_api;
+package uk.ac.westminster.products_api;
+
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+
 @RestController
-@GetMapping
 public class HelloController {
 
-    ng("/hello")
-    public String hello() {
-        return "Hello from Spring Boot!";
-    }
-    @GetMapping("/goodbye")
-    public String goodbye() {
-        return "Goodbye from Spring Boot!";
-    }
+    @GetMapping("/hello")
+    public String hello() {return "Hello from Spring Boot!";}
+
     @GetMapping("/status")
-    public String status() {
-        return "API is running — Tutorial 1";
-    }
+    public String status() {return "API is running - " + LocalDate.now().toString();}
+
+    @GetMapping("/goodbye")
+    public String goodbye() {return "Goodbye from Spring Boot!";}
 }

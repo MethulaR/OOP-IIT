@@ -6,17 +6,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping
+@RequestMapping("/customers")
 public class CustomerController {
 
-    @GetMapping("{/id}")
-    public Customer getById(@PathVariable String id) {
-
-        Address address = new Address(
-                "115 New Cavendish Street", "London", "W1W 6UW");
-        return new Customer(id, "Ada Lovelace",
-                "ada@example.com", address);
+    @GetMapping("/{id}")
+    public Customer getById(@PathVariable Long id) {
+        lk.ac.iit.products_api.Address.Address address = new lk.ac.iit.products_api.Address.Address(
+                "115 New Cavendish Street",
+                "London",
+                "WIN 6UW"
+        );
+        return new Customer(
+                id,
+                "Ada Lovelace",
+                "ada@example.com",
+                address
+        );
     }
-
-
 }
