@@ -2,17 +2,17 @@ package lk.ac.iit.products_api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/products")
 public class ProductController {
 
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/products")
+    @GetMapping
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
@@ -22,19 +22,29 @@ public class ProductController {
         return productService.getProductById(id).orElse(null);
     }
 
-    @PostMapping("/products")
+    @GetMapping("/search")
+    public List<Product> search(@RequestParam String name) {
+        return productService.findByName(name);
+    }
+
+    @PostMapping
     public Product addProduct(@RequestBody Product product) {
         return productService.addProduct(product);
     }
 
-    // ---- in ProductController.java ----
-    @DeleteMapping("/products/{id}")
-    public void deleteProduct(@PathVariable Long id) {
-        ProductService.deleteProduct(id);
+    // Task 13: POST a DigitalProduct so downloadUrl and fileSizeMB are kept
+    @PostMapping("/digital")
+    public Product addDigitalProduct(@RequestBody DigitalProduct product) {
+        return productService.addProduct(product);
     }
 
-    @GetMapping("/products/search")
-    public List<Product> search(@RequestParam String name) {
-        return productService.findByName(name);
+    @PostMapping("/physical")
+    public Product addPhysicalProduct(@RequestBody PhysicalProduct product) {
+        return productService.addProduct(product);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable Long id) {
+        productService.deleteProduct(id);
     }
 }
