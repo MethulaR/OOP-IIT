@@ -3,7 +3,8 @@ package lk.ac.iit.products_api;
 // A PhysicalProduct IS-A Product because it is still a sellable catalogue item with an id, name and price; it just also ships in a box.
 // A ShoppingCart would NOT pass this test: a cart HAS products (composition), it is not itself something the shop sells.
 
-public class PhysicalProduct extends Product {
+public class PhysicalProduct extends Product implements Discountable
+{
 
     private double weightKg;
     private String dimensions;
@@ -33,5 +34,22 @@ public class PhysicalProduct extends Product {
 
     public void setDimensions(String dimensions) {
         this.dimensions = dimensions;
+    }
+
+    @Override
+    public String getSummary() {
+        return "Physical:" + getName()
+                + "| Weight:" + getWeightKg();
+    }
+    private double discountedPrice;
+
+    @Override
+    public void applyDiscount(double rate){
+
+    }
+
+    @Override
+    public double getDiscountedPrice() {
+        return discountedPrice;
     }
 }
